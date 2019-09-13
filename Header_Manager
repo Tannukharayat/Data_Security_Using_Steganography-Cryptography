@@ -1,0 +1,38 @@
+import java.io.File;
+
+class HeaderManager
+{
+ final static int HEADER_LENGTH = 25;
+ final static char SEPARATOR = '~';
+
+ static String formHeader(String fname, int fsize) 
+ {
+   int forSize = 8;
+   int forSeparator = 1;
+   int forName = HEADER_LENGTH - forSize - forSeparator;
+
+   String fs= String.valueOf(fsize);   
+   while(fs.length() < forSize)
+    fs = "#"+fs; 
+   File f = new File(fname);
+   fname= f.getName();
+   
+   if(fname.length() > forName)
+   {
+     int start = fname.length() - forName;
+     fname = fname.substring(start);
+   }   
+   else
+   {
+     while(fname.length() < forName)
+      fname = "#"+fname; 
+   }
+
+   return fname + SEPARATOR + fs;
+ }
+
+ public static void main(String args[])
+ {
+   System.out.println(formHeader(args[0], Integer.parseInt(args[1])));   
+ } 
+}
