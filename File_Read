@@ -1,0 +1,23 @@
+import java.io.*;
+
+class FRead
+{
+ public static void main(String args[])
+ {
+  try
+  {
+    FileInputStream fin = new FileInputStream("f:/a.txt");  
+ 
+    int x;
+    while((x = fin.read()) != -1)
+     System.out.write(x);   
+ 
+    System.out.flush();   
+      fin.close();
+  }
+  catch(Exception ex)
+  {
+    System.out.println(ex);
+  }
+ }
+}
